@@ -1,0 +1,15 @@
+This is my solution
+File Vendor/Unisharp/laravel-filemanager/public/js/script.js
+row 3
+instead var sort_type = 'alphabetic';
+var sort_type = 'time';
+
+File Vendor/Unisharp/laravel-filemanager/src/Controllers/ItemsController.php
+instead
+'items' => array_map(function ($item) {
+return $item->fill()->attributes;
+}, array_merge($this->lfm->folders(), $this->lfm->files())),
+change to
+'items' => array_map(function ($item) {
+return $item->fill()->attributes;
+}, array_merge($this->lfm->folders(), array_reverse($this->lfm->files()))),
