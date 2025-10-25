@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>banglanews24</title>
+    <title>banglanews24/EN</title>
 </head>
 <body>
 <div class="container">
-    <span class="welcome">banglanews24</span>
+    <span class="welcome">banglanews24/EN</span>
 </div>
 
 <style type="text/css">

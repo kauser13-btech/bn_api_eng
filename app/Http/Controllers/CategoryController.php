@@ -114,9 +114,10 @@ class CategoryController extends Controller
 		$banner_desktop = Cache::get('desktop-category-banner');
 		$banner_mobile = Cache::get('mobile-category-banner');
 
-		$list = Cache::remember('today-all-'.request()->get('page', 1), 300, function () {
-			$sql = News::isActive()->select('n_id', 'n_head', 'main_image', 'start_at', 'created_at', 'deleted_at', 'n_date', 'n_details')->with('catName')->orderBy('n_id', 'desc')->paginate(20);
+		$list = Cache::remember('today-all-' . request()->get('page', 1), 300, function () {
+			$sql = News::isActive()->select('n_id', 'n_head', 'main_image', 'main_video', 'start_at', 'n_category', 'created_at', 'deleted_at', 'n_date', 'n_details')->with('catName')->orderBy('n_id', 'desc')->paginate(20);
 			// ->where('n_date', date('Y-m-d'))
+
 
 			$sql->transform(function ($row, $key) {
 				$row->main_image = ImageStoreHelpers::showImage('news_images', $row->created_at, $row->main_image, 'thumbnail');
