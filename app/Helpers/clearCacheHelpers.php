@@ -41,40 +41,19 @@ class clearCacheHelpers
 		// Cache::put('pin_news', queryHelpers::query_PinNews(), 300);
 		// Cache::put('pinLiveNews', queryHelpers::query_LiveNews('pin_news'), 300);
 		Cache::put('homeCat_1', queryHelpers::query_HomeCategory_With_Details(1, 20, 400), 300);
-		Cache::put('homeCat_2', queryHelpers::query_HomeCategory_With_Details(2, 20, 400), 300);
-		Cache::put('homeCat_14', queryHelpers::query_HomeCategory_With_Details(14, 20, 400), 300);
 		Cache::put('homeCat_4', queryHelpers::query_HomeCategory_With_Details(4, 20, 400), 300);
-		Cache::put('homeCat_3', queryHelpers::query_HomeCategory_With_Details(3, 20, 400), 300);
 		Cache::put('homeCat_5', queryHelpers::query_HomeCategory_With_Details(5, 20, 400), 300);
-		Cache::put('homeCat_6', queryHelpers::query_HomeCategory_With_Details(6, 20, 400), 300);
-		Cache::put('homeCat_1208', queryHelpers::query_HomeCategory_With_Details(1208, 20, 400), 300);
-		Cache::put('homeCat_1253', queryHelpers::query_HomeCategory_With_Details(1253, 20, 400), 300);
-		Cache::put('homeCat_14', queryHelpers::query_HomeCategory_With_Details(14, 20, 400), 300);
-		Cache::put('homeCat_12', queryHelpers::query_HomeCategory_With_Details(12, 20, 400), 300);
-		Cache::put('homeCat_20', queryHelpers::query_HomeCategory_With_Details(20, 20, 400), 300);
-		Cache::put('homeCat_19', queryHelpers::query_HomeCategory_With_Details(19, 20, 400), 300);
+		Cache::put('homeCat_2', queryHelpers::query_HomeCategory_With_Details(2, 20, 400), 300);
+		Cache::put('homeCat_3', queryHelpers::query_HomeCategory_With_Details(3, 20, 400), 300);
 		Cache::put('homeCat_7', queryHelpers::query_HomeCategory_With_Details(7, 20, 400), 300);
-		Cache::put('homeCat_9', queryHelpers::query_HomeCategory_With_Details(9, 20, 400), 300);
+		Cache::put('homeCat_6', queryHelpers::query_HomeCategory_With_Details(6, 20, 400), 300);
+		Cache::put('homeCat_10', queryHelpers::query_HomeCategory_With_Details(10, 20, 400), 300);
+		Cache::put('homeCat_8', queryHelpers::query_HomeCategory_With_Details(8, 20, 400), 300);
+		Cache::put('homeCat_12', queryHelpers::query_HomeCategory_With_Details(12, 20, 400), 300);
 		Cache::put('homeCat_15', queryHelpers::query_HomeCategory_With_Details(15, 20, 400), 300);
-		Cache::put('homeCat_11', queryHelpers::query_HomeCategory_With_Details(11, 20, 400), 300);
-		Cache::put('homeCat_16', queryHelpers::query_HomeCategory_With_Details(16, 20, 400), 300);
 
 		Cache::put('latest', queryHelpers::query_LatestNews(), 503);
 		Cache::put('most_read', queryHelpers::query_MostRead(), 503);
-		Cache::put('homePhotoGallery', queryHelpers::query_HomePhotoGallery(), 503);
-		Cache::put('homeVideoGallery', queryHelpers::query_HomeVideoGallery(), 503);
-		Cache::put('special_video', queryHelpers::query_HomeSpecialVideo(), 503);
-		Cache::put('home_videoSlide', queryHelpers::query_HomeVideoSlide(), 503);
-
-
-		// Cache::put('best_of_week', queryHelpers::query_BestOfWeekNews(), 503);
-
-		// Cache::put('homeMagazine', queryHelpers::query_HomeMagazine(), 503);
-		// Cache::put('homeAstrology', queryHelpers::query_HomeAstrology(), 503);
-		// Cache::put('multimediaHome', queryHelpers::query_HomeMultimedia(), 503);
-		// Cache::put('homePool', queryHelpers::query_HomePool(), 303);
-		// Cache::put('special_tag', queryHelpers::query_HomeSpecialTagNews(), 503);
-		// Cache::put('special_carousel', queryHelpers::query_SpecialCarousel(), 503);
 
 		Cache::put('special_tag_news', queryHelpers::query_specialSigment(), 503);
 	}

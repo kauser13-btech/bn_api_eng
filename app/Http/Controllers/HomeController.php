@@ -35,9 +35,7 @@ class HomeController extends Controller
         $banner_mobile = Cache::get('mobile-home-banner');
 
         $leadNews = Cache::get('leadNews');
-
         $leadLiveNews = Cache::get('leadLiveNews');
-
         $highlight = Cache::get('highlight');
 
         // $focusitems = Cache::get('focusitems');
@@ -45,21 +43,18 @@ class HomeController extends Controller
         // $pin_Live_news = Cache::get('pinLiveNews');
 
         $latest = Cache::get('latest');
-
         $most_read = Cache::get('most_read');
 
         $homeCat_1 = Cache::get('homeCat_1');
-        $homeCat_2 = Cache::get('homeCat_2');
-        $homeCat_14 = Cache::get('homeCat_14');
         $homeCat_4 = Cache::get('homeCat_4');
-        $homeCat_3 = Cache::get('homeCat_3');
         $homeCat_5 = Cache::get('homeCat_5');
-        $homeCat_6 = Cache::get('homeCat_6');
-        $homeCat_1208 = Cache::get('homeCat_1208');
+        $homeCat_2 = Cache::get('homeCat_2');
+        $homeCat_3 = Cache::get('homeCat_3');
+        $homeCat_7 = Cache::get('homeCat_7');
 
 
-        $special_video = Cache::get('special_video');
-        $home_videoSlide = Cache::get('home_videoSlide');
+        // $special_video = Cache::get('special_video');
+        // $home_videoSlide = Cache::get('home_videoSlide');
 
 
         return response()->json(
@@ -68,8 +63,8 @@ class HomeController extends Controller
                 'banner_mobile' => $banner_mobile,
                 'leadNews' => $leadNews,
                 'leadLiveNews' => $leadLiveNews,
-                'special_video' => $special_video,
-                'home_videoSlide' => $home_videoSlide,
+                // 'special_video' => $special_video,
+                // 'home_videoSlide' => $home_videoSlide,
                 'highlight' => $highlight,
                 // 'focusitems' => $focusitems,
                 // 'pin_news' => $pin_news,
@@ -77,13 +72,11 @@ class HomeController extends Controller
                 'latest' => $latest,
                 'most_read' => $most_read,
                 'homeCat_1' => $homeCat_1,
-                'homeCat_2' => $homeCat_2,
-                'homeCat_14' => $homeCat_14,
                 'homeCat_4' => $homeCat_4,
-                'homeCat_3' => $homeCat_3,
                 'homeCat_5' => $homeCat_5,
-                'homeCat_6' => $homeCat_6,
-                'homeCat_1208' => $homeCat_1208,
+                'homeCat_2' => $homeCat_2,
+                'homeCat_3' => $homeCat_3,
+                'homeCat_7' => $homeCat_7,
             ],
             200,
             ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
@@ -93,29 +86,19 @@ class HomeController extends Controller
 
     public function index2()
     {
-        $homeCat_1253 = Cache::get('homeCat_1253');
-        $homeCat_14 = Cache::get('homeCat_14');
+        $homeCat_6 = Cache::get('homeCat_6');
+        $homeCat_10 = Cache::get('homeCat_10');
+        $homeCat_8 = Cache::get('homeCat_8');
         $homeCat_12 = Cache::get('homeCat_12');
-        $homeCat_20 = Cache::get('homeCat_20');
-        $homeCat_19 = Cache::get('homeCat_19');
-        $homeCat_7 = Cache::get('homeCat_7');
-        $homeCat_9 = Cache::get('homeCat_9');
         $homeCat_15 = Cache::get('homeCat_15');
-        $homeCat_11 = Cache::get('homeCat_11');
-        $homeCat_16  = Cache::get('homeCat_16 ');
         
         return response()->json(
             [
-                'homeCat_1253' => $homeCat_1253,
-                'homeCat_14' => $homeCat_14,
+                'homeCat_6' => $homeCat_6,
+                'homeCat_10' => $homeCat_10,
+                'homeCat_8' => $homeCat_8,
                 'homeCat_12' => $homeCat_12,
-                'homeCat_20' => $homeCat_20,
-                'homeCat_19' => $homeCat_19,
-                'homeCat_7' => $homeCat_7,
-                'homeCat_9' => $homeCat_9,
                 'homeCat_15' => $homeCat_15,
-                'homeCat_11' => $homeCat_11,
-                'homeCat_16' => $homeCat_16,
             ],
             200,
             ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
