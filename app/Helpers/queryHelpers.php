@@ -186,6 +186,7 @@ class queryHelpers
         $sql = $sql->limit(30)->get();
 
         $sql->transform(function ($row, $key) {
+            $row->main_image = ImageStoreHelpers::showImage('news_images', $row->created_at, $row->main_image, '');
             $row->date_at = generalHelper::time_elapsed_string($row->start_at);
             $row->f_date = date("Y/m/d", strtotime($row->start_at));
             return $row;
