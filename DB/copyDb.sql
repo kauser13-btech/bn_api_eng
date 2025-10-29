@@ -1,5 +1,5 @@
-https://bnadbnmin.bgwebserver.com/ewmgl/login
-https://abnpibn.bgwebserver.com/api
+https://abnpibnen.bgwebserver.com/ewmgl/login
+https://abnpibnen.bgwebserver.com/api
 
 
 -- after year unisharp/laravel-filemanager upload folder location change
@@ -15,14 +15,12 @@ https://abnpibn.bgwebserver.com/api
 ImageStoreHelpers showImage default image change kora lagbe
 
 -- news table status check
-UPDATE `news` SET `n_status` = '3' WHERE `n_status` = 2;
-ALTER TABLE `galleries` ADD `slide_video` tinyint NULL DEFAULT '0' AFTER `special_video`;
 
 
 <!-- admin server -->
 ssh bn24usr@103.16.72.103
 B@n3$@$01&
-cd /var/www/bnapi
+cd /var/www/bn_api_eng
 git pull
 exit
 
@@ -44,17 +42,16 @@ sudo supervisorctl stop laravel-worker:*
 sudo supervisorctl start laravel-worker:*
 
 -- database
-https://bnadbnmin.bgwebserver.com/dbssssssss/?server=192.168.72.105&username=nodeuser&db=bn_prod
-User: nodeuser
-Host: 192.168.72.105
-Password: 6e+PH*G2nG4
+https://bnadbnminen.bgwebserver.com/dbssssssssss/?server=
+root
+b!a%M&52?aH
 
 
 -- database lgoin
 ssh bn24usr@103.16.72.103
 B@n3$@$01&
-mysql -u'nodeuser' -p'6e+PH*G2nG4' -h'192.168.72.105'
-use bn_prod;
+mysql -u'nodeuser' -p'b!a%M&52?aH' -h'192.168.72.105'
+use bn_eng;
 
 -- create archive table
 CREATE TABLE `news_2024` LIKE `news`; 
@@ -65,22 +62,19 @@ DELETE FROM `news` WHERE n_date BETWEEN '2024-01-01' AND '2024-12-31';
 
 
 -- web 1 api account
-ssh bn24usr@103.16.72.104 
+ssh bn24usr@103.16.72.104
 B@n3$@$01&
 
-cd /var/www/bnapi
+cd /var/www/bn_api_eng
 git pull
 exit
 
 
 -- web 1 front Server
-ssh bn24usr@103.16.74.34
--- web 2 front Server
-ssh bn24usr@103.16.74.35
-
+ssh bn24usr@103.16.72.106
 B@n3$@$01&
 
-cd /home/bn24usr/bnfront
+cd /var/www/html/bnfront_eng
 git pull
 rm -rf .next
 npm run build

@@ -98,7 +98,7 @@ class CategoryController extends Controller
 				$row->n_details = generalHelper::splitText(strip_tags(html_entity_decode($row->n_details)), 400);
 				// $row->start_at = generalHelper::time_elapsed_string($row->start_at);
 				$edition = ($row->edition == 'online') ? 'online/' : 'print-edition/';
-				$row->detailsUrl = 'https://www.banglanews24.com/' . $edition . $row->catName->slug . '/' . date("Y/m/d", strtotime($row->start_at)) . '/' . $row->n_id;
+				$row->detailsUrl = 'https://en.banglanews24.com/' . $edition . $row->catName->slug . '/' . date("Y/m/d", strtotime($row->start_at)) . '/' . $row->n_id;
 				return $row;
 			});
 

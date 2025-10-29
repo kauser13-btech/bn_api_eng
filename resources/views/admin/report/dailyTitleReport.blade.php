@@ -70,7 +70,7 @@
                                     <tr>
                                         <td>{{ $loop->index }}</td>
                                         <td>{{ $row->n_head }}</td>
-                                        <td>{{ 'https://www.banglanews24.com/online/' . $row->catName->slug . '/' . date('Y/m/d', strtotime($row->start_at)) . '/' . $row->n_id }}
+                                        <td>{{ 'https://en.banglanews24.com/online/' . $row->catName->slug . '/' . date('Y/m/d', strtotime($row->start_at)) . '/' . $row->n_id }}
                                         </td>
                                         <td>{{ $row->catName->m_name }}</td>
                                         <td>{{ $row->createdBy->name }}</td>

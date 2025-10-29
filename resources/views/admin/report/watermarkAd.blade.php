@@ -82,7 +82,7 @@
 							<tr>
 								<th scope="row">{{$row->n_id}}</th>
 								<td>{{$row->n_head}}</td>
-								<td><a href="https://www.banglanews24.com/{{$m_edition}}/{{$row->catName->slug}}/{{date("Y/m/d", strtotime($row->start_at))}}/{{$row->n_id}}" target="_blank">https://www.banglanews24.com/{{$m_edition}}/{{$row->catName->slug}}/{{date("Y/m/d", strtotime($row->start_at))}}/{{$row->n_id}}</a></td>
+								<td><a href="https://en.banglanews24.com/{{$m_edition}}/{{$row->catName->slug}}/{{date("Y/m/d", strtotime($row->start_at))}}/{{$row->n_id}}" target="_blank">https://en.banglanews24.com/{{$m_edition}}/{{$row->catName->slug}}/{{date("Y/m/d", strtotime($row->start_at))}}/{{$row->n_id}}</a></td>
 								<td>{{ $row->createdBy->name }}</td>
 							</tr>
 						@endforeach

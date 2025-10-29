@@ -194,7 +194,7 @@
                                                         }
                                                     @endphp
                                                     @if ($row->n_status == 3)
-                                                        <a href="https://www.banglanews24.com/{{ $row->catName->slug }}/news/bd/{{ $row->n_id }}.details"
+                                                        <a href="https://en.banglanews24.com/{{ $row->catName->slug }}/news/bd/{{ $row->n_id }}.details"
                                                             class="btn btn-link btn-warning btn-just-icon edit"
                                                             target="_blank"><i class="material-icons">link</i></a>
                                                     @endif

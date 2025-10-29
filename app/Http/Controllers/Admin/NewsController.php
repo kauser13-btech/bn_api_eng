@@ -649,22 +649,22 @@ class NewsController extends Controller
 		$results = [];
 
 		foreach ($sql as $row) {
-			if ($row->catName->m_edition == 'online') {
-				$m_edition = 'online';
-			} elseif ($row->catName->m_edition == 'multimedia') {
-				$m_edition = 'multimedia';
-			} elseif ($row->catName->m_edition == 'print') {
-				$m_edition = 'print-edition';
-			} else {
-				$m_edition = 'feature';
-			}
+			// if ($row->catName->m_edition == 'online') {
+			// 	$m_edition = 'online';
+			// } elseif ($row->catName->m_edition == 'multimedia') {
+			// 	$m_edition = 'multimedia';
+			// } elseif ($row->catName->m_edition == 'print') {
+			// 	$m_edition = 'print-edition';
+			// } else {
+			// 	$m_edition = 'feature';
+			// }
 
 			$results[] = [
 				'id' =>  $row->n_id,
 				'name' =>  $row->n_head,
 				'img' => ImageStoreHelpers::showImage('news_images', $row->created_at, $row->main_image, ''),
 				'f_date' => $row->start_at,
-				'link' => 'https://www.banglanews24.com/' . $m_edition . '/' . $row->catName->slug . '/' . date("Y/m/d", strtotime($row->start_at)) . '/' . $row->n_id,
+				'link' => 'https://en.banglanews24.com/' . $row->catName->slug . '/news/bd/' . $row->n_id . '.details',
 			];
 		}
 
@@ -678,15 +678,15 @@ class NewsController extends Controller
 		$results = [];
 
 		foreach ($sql as $row) {
-			if ($row->catName->m_edition == 'online') {
-				$m_edition = 'online';
-			} elseif ($row->catName->m_edition == 'multimedia') {
-				$m_edition = 'multimedia';
-			} else if ($row->catName->m_edition == 'print') {
-				$m_edition = 'print-edition';
-			} else {
-				$m_edition = 'feature';
-			}
+			// if ($row->catName->m_edition == 'online') {
+			// 	$m_edition = 'online';
+			// } elseif ($row->catName->m_edition == 'multimedia') {
+			// 	$m_edition = 'multimedia';
+			// } else if ($row->catName->m_edition == 'print') {
+			// 	$m_edition = 'print-edition';
+			// } else {
+			// 	$m_edition = 'feature';
+			// }
 
 			$results[] = [
 				'id' =>  $row->n_id,
@@ -695,7 +695,7 @@ class NewsController extends Controller
 				'n_details' =>  generalHelper::splitText($row->n_details, 300),
 				'img' => ImageStoreHelpers::showImage('news_images', $row->created_at, $row->main_image, ''),
 				'f_date' => $row->start_at,
-				'link' => 'https://www.banglanews24.com/' . $m_edition . '/' . $row->catName->slug . '/' . date("Y/m/d", strtotime($row->start_at)) . '/' . $row->n_id,
+				'link' => 'https://en.banglanews24.com/' . $row->catName->slug . '/news/bd/' . $row->n_id . '.details',
 			];
 		}
 
@@ -746,7 +746,7 @@ class NewsController extends Controller
 			];
 		} else {
 			return [
-				'platform'=> $result['platform'],
+				'platform' => $result['platform'],
 				'embed_link' => $result['embed_link'],
 				'status' => 'success'
 			];

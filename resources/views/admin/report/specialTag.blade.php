@@ -75,7 +75,7 @@
 								<th scope="row">{{$row->n_id}}</th>
 								<td>{{$row->n_head}}</td>
 								<td>{{$row->most_read}}</td>
-								<td><a href="https://www.banglanews24.com/{{$m_edition}}/{{$row->catName->slug}}/{{date("Y/m/d", strtotime($row->start_at))}}/{{$row->n_id}}" class="btn btn-link btn-warning btn-just-icon edit" target="_blank"><i class="material-icons">link</i></a></td>
+								<td><a href="https://en.banglanews24.com/{{$m_edition}}/{{$row->catName->slug}}/{{date("Y/m/d", strtotime($row->start_at))}}/{{$row->n_id}}" class="btn btn-link btn-warning btn-just-icon edit" target="_blank"><i class="material-icons">link</i></a></td>
 							</tr>
 						@endforeach
 					</tbody>
