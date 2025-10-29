@@ -18,9 +18,9 @@ ImageStoreHelpers showImage default image change kora lagbe
 
 
 <!-- admin server -->
-ssh bn24usr@103.16.72.103
+ssh bn24usr@103.16.72.106
 B@n3$@$01&
-cd /var/www/bn_api_eng
+cd /var/www/html/bn_api_eng_admin
 git pull
 exit
 
@@ -62,10 +62,10 @@ DELETE FROM `news` WHERE n_date BETWEEN '2024-01-01' AND '2024-12-31';
 
 
 -- web 1 api account
-ssh bn24usr@103.16.72.104
+ssh bn24usr@103.16.72.106
 B@n3$@$01&
 
-cd /var/www/bn_api_eng
+cd /var/www/html/bn_api_eng
 git pull
 exit
 

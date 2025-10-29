@@ -100,7 +100,6 @@ class DetailsController extends Controller
         });
 
 
-
         // print_r($more);exit;
         return response()->json(
             [

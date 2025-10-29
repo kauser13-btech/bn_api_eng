@@ -121,7 +121,7 @@ class CategoryController extends Controller
 
 			$sql->transform(function ($row, $key) {
 				$row->main_image = ImageStoreHelpers::showImage('news_images', $row->created_at, $row->main_image, 'thumbnail');
-				$row->n_details = generalHelper::splitText($row->n_details, 700);
+				$row->n_details = generalHelper::splitText($row->n_details, 200);
 				return $row;
 			});
 			return $sql;

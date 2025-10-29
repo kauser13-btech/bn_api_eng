@@ -272,7 +272,7 @@ class queryHelpers
         $sql = Astrology::isActive()->where('p_status', 1)->where('start_date', $EPaperPublishDate)->orderBy('p_order', 'ASC')->get();
 
         $sql->transform(function ($row, $key) {
-            $row->date_at = generalHelper::bn_date(date("d F, Y", strtotime($row->start_date)));
+            $row->date_at = date("d F, Y", strtotime($row->start_date));
             $row->f_date = date("Y/m/d", strtotime($row->start_at));
             return $row;
         });
@@ -404,13 +404,13 @@ class queryHelpers
             $sql->n_solder = strip_tags(html_entity_decode($sql->n_solder));
             $sql->n_head = strip_tags(html_entity_decode($sql->n_head));
             $sql->n_subhead = ($sql->n_subhead) ?  '<li>' . str_replace("\n", '</li><li>', html_entity_decode($sql->n_subhead)) . '</li>' : '';
-            $sql->n_details = str_replace('/ckfinder/innerfiles/', 'https://asset.banglanews24.com/public/news_images/ckfinder/innerfiles/', htmlentities(html_entity_decode($sql->n_details)));
+            $sql->n_details = str_replace('/ckfinder/innerfiles/', 'https://en-cdn.banglanews24.com/public/news_images/ckfinder/innerfiles/', htmlentities(html_entity_decode($sql->n_details)));
             $ifOg = ($sql->watermark != '') ? 'og' : '';
             $sql->openGraphImg = ImageStoreHelpers::showImage('news_images', $sql->created_at, $sql->main_image, $ifOg);
             $sql->datePublished = date('h:i A, F Y, l', strtotime($sql->start_at));
             $sql->dateModified = date('h:i A, F Y, l', strtotime(($sql->edit_at) ? $sql->edit_at : $sql->start_at));
-            $sql->date_at = generalHelper::bn_date(date("d F, Y H:i", strtotime($sql->start_at)));
-            $sql->edit_at = $sql->edit_at ? generalHelper::bn_date(date("l, d F, Y H:i", strtotime($sql->edit_at))) : '';
+            $sql->date_at = date("d F, Y H:i", strtotime($sql->start_at));
+            $sql->edit_at = $sql->edit_at ? date("l, d F, Y H:i", strtotime($sql->edit_at)) : '';
             $sql->main_image = ImageStoreHelpers::showImage('news_images', $sql->created_at, $sql->main_image, '');
             $sql->meta_description = $sql->meta_description ? strip_tags(html_entity_decode($sql->meta_description)) : generalHelper::splitText(strip_tags(html_entity_decode($sql->n_details)), 400);
             $sql->writers_img = ($sql->getWriters) ? ImageStoreHelpers::showImage('profile', $sql->getWriters->created_at, $sql->getWriters->img) : '';
@@ -463,8 +463,9 @@ class queryHelpers
             $row->n_head = strip_tags(html_entity_decode($row->n_head));
             $row->n_subhead = strip_tags(html_entity_decode($row->n_subhead));
             $row->n_details = generalHelper::splitText($row->n_details, 2000);
-            $row->date_at = generalHelper::bn_date(date("l, d F, Y, H:i", strtotime($row->start_at)));
-            $row->edit_at = generalHelper::bn_date(date("l, d F, Y, H:i", strtotime($row->edit_at)));
+            $row->date_at = date("l, d F, Y, H:i", strtotime($row->start_at));
+
+            $row->edit_at = date("l, d F, Y, H:i", strtotime($row->edit_at));
             $row->writers_img = ($row->getWriters) ? ImageStoreHelpers::showImage('profile', $row->getWriters->created_at, $row->getWriters->img) : '';
             $row->writers_name = ($row->getWriters) ? $row->getWriters->name : '';
             $row->writers_profession = ($row->getWriters) ? $row->getWriters->profession : '';
@@ -540,7 +541,7 @@ class queryHelpers
             $row->main_image = ImageStoreHelpers::showImage('news_images', $row->created_at, $row->main_image, '');
             $row->n_head = strip_tags(html_entity_decode($row->n_head));
             $row->n_details = generalHelper::splitText(strip_tags(html_entity_decode($row->n_details)), 400);
-            $row->date_at = ($APP_URL_Edition == 'online') ? generalHelper::time_elapsed_string($row->start_at) : generalHelper::bn_date(date("d F, Y", strtotime($row->start_at)));
+            $row->date_at = ($APP_URL_Edition == 'online') ? generalHelper::time_elapsed_string($row->start_at) : date("d F, Y", strtotime($row->start_at));
             $row->f_date = date("Y/m/d", strtotime($row->start_at));
             return $row;
         });
@@ -596,7 +597,7 @@ class queryHelpers
             $row->main_image = ImageStoreHelpers::showImage('news_images', $row->created_at, $row->main_image, '');
             $row->n_head = strip_tags(html_entity_decode($row->n_head));
             $row->n_details = generalHelper::splitText(strip_tags(html_entity_decode($row->n_details)), 400);
-            $row->date_at = ($APP_URL_Edition == 'online') ? generalHelper::time_elapsed_string($row->start_at) : generalHelper::bn_date(date("d F, Y", strtotime($row->start_at)));
+            $row->date_at = ($APP_URL_Edition == 'online') ? generalHelper::time_elapsed_string($row->start_at) : date("d F, Y", strtotime($row->start_at));
             $row->f_date = date("Y/m/d", strtotime($row->start_at));
             return $row;
         });
@@ -741,8 +742,8 @@ class queryHelpers
             $row->n_head = strip_tags(html_entity_decode($row->n_head));
             $row->n_subhead = strip_tags(html_entity_decode($row->n_subhead));
             $row->n_details = str_replace('/ckfinder/innerfiles/', 'https://asset.banglanews24.com/public/news_images/ckfinder/innerfiles/', htmlentities(html_entity_decode($row->n_details)));
-            $row->date_at = generalHelper::bn_date(date("H:i, l d", strtotime($row->start_at)));
-            $row->edit_at = $row->edit_at ? generalHelper::bn_date(date("l, d F, Y H:i", strtotime($row->edit_at))) : '';
+            $row->date_at = date("H:i, l d", strtotime($row->start_at));
+            $row->edit_at = $row->edit_at ? date("l, d F, Y H:i", strtotime($row->edit_at)) : '';
             $row->writers_img = ($row->getWriters) ? ImageStoreHelpers::showImage('profile', $row->getWriters->created_at, $row->getWriters->img) : '';
             $row->writers_name = ($row->getWriters) ? $row->getWriters->name : '';
 

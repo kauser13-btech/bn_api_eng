@@ -40,17 +40,17 @@ class clearCacheHelpers
 		// Cache::put('focusitems', queryHelpers::query_Focusitems(), 300);
 		// Cache::put('pin_news', queryHelpers::query_PinNews(), 300);
 		// Cache::put('pinLiveNews', queryHelpers::query_LiveNews('pin_news'), 300);
-		Cache::put('homeCat_1', queryHelpers::query_HomeCategory_With_Details(1, 20, 400), 300);
-		Cache::put('homeCat_4', queryHelpers::query_HomeCategory_With_Details(4, 20, 400), 300);
-		Cache::put('homeCat_5', queryHelpers::query_HomeCategory_With_Details(5, 20, 400), 300);
-		Cache::put('homeCat_2', queryHelpers::query_HomeCategory_With_Details(2, 20, 400), 300);
-		Cache::put('homeCat_3', queryHelpers::query_HomeCategory_With_Details(3, 20, 400), 300);
-		Cache::put('homeCat_7', queryHelpers::query_HomeCategory_With_Details(7, 20, 400), 300);
-		Cache::put('homeCat_6', queryHelpers::query_HomeCategory_With_Details(6, 20, 400), 300);
-		Cache::put('homeCat_10', queryHelpers::query_HomeCategory_With_Details(10, 20, 400), 300);
-		Cache::put('homeCat_8', queryHelpers::query_HomeCategory_With_Details(8, 20, 400), 300);
-		Cache::put('homeCat_12', queryHelpers::query_HomeCategory_With_Details(12, 20, 400), 300);
-		Cache::put('homeCat_15', queryHelpers::query_HomeCategory_With_Details(15, 20, 400), 300);
+		Cache::put('homeCat_1', queryHelpers::query_HomeCategory_With_Details(1, 20, 200), 300);
+		Cache::put('homeCat_4', queryHelpers::query_HomeCategory_With_Details(4, 20, 200), 300);
+		Cache::put('homeCat_5', queryHelpers::query_HomeCategory_With_Details(5, 20, 200), 300);
+		Cache::put('homeCat_2', queryHelpers::query_HomeCategory_With_Details(2, 20, 200), 300);
+		Cache::put('homeCat_3', queryHelpers::query_HomeCategory_With_Details(3, 20, 200), 300);
+		Cache::put('homeCat_7', queryHelpers::query_HomeCategory_With_Details(7, 20, 200), 300);
+		Cache::put('homeCat_6', queryHelpers::query_HomeCategory_With_Details(6, 20, 200), 300);
+		Cache::put('homeCat_10', queryHelpers::query_HomeCategory_With_Details(10, 20, 200), 300);
+		Cache::put('homeCat_8', queryHelpers::query_HomeCategory_With_Details(8, 20, 200), 300);
+		Cache::put('homeCat_12', queryHelpers::query_HomeCategory_With_Details(12, 20, 200), 300);
+		Cache::put('homeCat_15', queryHelpers::query_HomeCategory_With_Details(15, 20, 200), 300);
 
 		Cache::put('latest', queryHelpers::query_LatestNews(), 503);
 		Cache::put('most_read', queryHelpers::query_MostRead(), 503);
