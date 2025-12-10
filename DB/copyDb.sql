@@ -89,3 +89,19 @@ sudo systemctl stop nginx
 sudo systemctl start nginx
 sudo service php8.1-fpm stop
 sudo service php8.1-fpm start
+
+composer audit
+composer update --with-all-dependencies
+
+npm outdated
+npm update --save
+-- Malware Scan
+npm audit
+npm audit fix
+npx fix-react2shell-next
+npx @nodesecure/cli scan
+npx depcheck
+npx eslint .
+grep -R "eval(" -n .
+grep -R "child_process" -n .
+grep -R "exec(" -n .
