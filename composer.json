@@ -5,19 +5,19 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+       "php": "^8.2",
         "aws/aws-sdk-php": "^3.258",
         "guzzlehttp/guzzle": "^7.2",
-        "intervention/image": "^3.0",
+        "intervention/image": "^2.7",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/telescope": "^5.0",
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.10",
-        "predis/predis": "^3.0",
-        "unisharp/laravel-filemanager": "^2.12",
-        "zacksmash/fortify-ui": "^2.0"
+        "predis/predis": "^2.0",
+        "unisharp/laravel-filemanager": "^2.9",
+        "zacksmash/fortify-ui": "^1.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
