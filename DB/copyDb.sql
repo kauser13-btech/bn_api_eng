@@ -32,11 +32,11 @@ php artisan cache:clear
 php artisan optimize:clear
 exit
 
-tail -f /var/log/instantcache/instantcache.log
+tail -f /var/log/instantcache/instantcache_eng.log
 
 -- Queue server
-sudo supervisorctl stop laravel-worker:*
-sudo supervisorctl start laravel-worker:*
+sudo supervisorctl stop enadmin-worker:*
+sudo supervisorctl start enadmin-worker:*
 
 -- database
 https://bnadbnmin.bgwebserver.com/dbssssssss/?server=192.168.72.105&username=root&db=bn_prod
