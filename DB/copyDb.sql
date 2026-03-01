@@ -12,15 +12,12 @@ https://abnpibnen.bgwebserver.com/api
 
 ----------Need TO run---------------
 
-ImageStoreHelpers showImage default image change kora lagbe
 
--- news table status check
 
 
 <!-- admin server -->
-ssh bn24usr@103.16.72.106
-B@n3$@$01&
-cd /var/www/html/bn_api_eng_admin
+ssh -i bp-sig-public.pem ubuntu@18.136.60.22
+cd /var/www/html/enadmin
 git pull
 exit
 
@@ -35,23 +32,23 @@ php artisan cache:clear
 php artisan optimize:clear
 exit
 
-tail -f /var/log/instantsync.log
+tail -f /var/log/instantcache/instantcache.log
 
 -- Queue server
 sudo supervisorctl stop laravel-worker:*
 sudo supervisorctl start laravel-worker:*
 
 -- database
-https://bnadbnminen.bgwebserver.com/dbssssssssss/?server=
-root
-b!a%M&52?aH
+https://bnadbnmin.bgwebserver.com/dbssssssss/?server=192.168.72.105&username=root&db=bn_prod
+User: root
+Host: 192.168.72.105
+Password: cZY>>6*BBj>WZ?j]rcm4
 
 
 -- database lgoin
-ssh bn24usr@103.16.72.103
-B@n3$@$01&
-mysql -u'nodeuser' -p'b!a%M&52?aH' -h'192.168.72.105'
-use bn_eng;
+ssh -i bp-sig-public.pem ubuntu@18.136.60.22
+mysql -u'root' -p'cZY>>6*BBj>WZ?j]rcm4'
+use bn_prod;
 
 -- create archive table
 CREATE TABLE `news_2024` LIKE `news`; 
@@ -61,26 +58,29 @@ DELETE FROM `news` WHERE n_date BETWEEN '2024-01-01' AND '2024-12-31';
 
 
 
--- web 1 api account
-ssh bn24usr@103.16.72.106
-B@n3$@$01&
-
+-- web api account
+ssh -i bp-sig-public.pem ubuntu@18.136.60.22
 cd /var/www/html/bn_api_eng
 git pull
 exit
 
 
+-- web front server
+ssh -i bp-sig-public.pem ubuntu@18.136.60.22
+cd key
 -- web 1 front Server
-ssh bn24usr@103.16.72.106
-B@n3$@$01&
+ssh -i bp-sig-private.pem ubuntu@192.170.1.208
+-- web 2 front account
+ssh -i bp-sig-private.pem ubuntu@192.170.1.194
 
-cd /var/www/html/bnfront_eng
+
+cd bnfront_eng
 git pull
 rm -rf .next
 npm run build
-pm2 stop server.sh
+pm2 stop server.sh --name "server_en"
 pm2 flush
-pm2 start server.sh
+pm2 start server.sh --name "server_en"
 exit
 
 
@@ -91,8 +91,7 @@ sudo service php8.1-fpm stop
 sudo service php8.1-fpm start
 
 composer audit
-composer update --with-all-dependencies
-
+composer audit fix
 npm outdated
 npm update --save
 -- Malware Scan
