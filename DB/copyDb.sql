@@ -81,6 +81,7 @@ npm run build
 pm2 stop server.sh --name "server_en"
 pm2 flush
 pm2 start server.sh --name "server_en"
+pm2 save
 exit
 
 
