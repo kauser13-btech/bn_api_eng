@@ -340,30 +340,32 @@ class generalHelper
         return $quiz['a'] == $answer ? 1 : 0;
     }
 
-    public static function getRemoteImage($url)
+    public static function getImageAsData($url)
     {
         $ch = curl_init();
 
-        $headers = [
-            'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-            'Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-            'Accept-Language: en-US,en;q=0.9',
-            'Referer: https://www.google.com/'
-        ];
-
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // রিডাইরেক্ট হলে ফলো করবে
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10); // ১০ সেকেন্ডের বেশি সময় নিবে না
+
+        // ব্রাউজার হিসেবে পরিচয় দেওয়া (Cloudflare বাইপাস করতে)
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
+
+        // রেফারার সেট করা (ইমেজ চুরি ঠেকাতে চেক করলে এটি কাজে দেয়)
+        $host = parse_url($url, PHP_URL_HOST);
+        curl_setopt($ch, CURLOPT_REFERER, "https://$host/");
 
         $imageData = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $mimeType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+
         curl_close($ch);
 
         if ($httpCode === 200 && $imageData !== false) {
-            return 'data:image/jpeg;base64,' . base64_encode($imageData);
+            // যদি mime type না পাওয়া যায় তবে ডিফল্ট image/jpeg
+            $mime = $mimeType ?: 'image/jpeg';
+            return 'data:' . $mime . ';base64,' . base64_encode($imageData);
         }
 
         return null;
