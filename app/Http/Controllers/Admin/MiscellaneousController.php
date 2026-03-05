@@ -98,12 +98,12 @@ class MiscellaneousController extends Controller
 	public function newsCard($n_id, $ad_id, $card_id)
 	{
 		$card_sql = Ads::activeAd()->where('ads_positions_slug', 'news_card');
-		$card_list = $card_sql->orderBy('id', 'desc')->get();
+		$card_list = $card_sql->orderBy('ad_order', 'asc')->get();
 
 		if ($card_id != 0) {
 			$news_card = $card_sql->where('id', $card_id);
 		} else {
-			$news_card = $card_sql->orderBy('id', 'desc');
+			$news_card = $card_sql->orderBy('ad_order', 'asc');
 		}
 		$news_card_ad = $news_card->first();
 
