@@ -63,7 +63,7 @@ class generalHelper
             $replace = preg_replace('/<iframe.*?\/iframe>/i', '', $replace);
             $replace = strip_tags($replace);
             $replace = preg_replace('@<(\w+)\b.*?>.*?</\1>@si', '', $replace);
-            $replace = preg_replace("/&#?[a-z0-9]+;/i", "", $replace);
+            $replace = preg_replace("/&#?[a-z0-9]+;/i","",$replace);
             return preg_replace('/\s+?(\S+)?$/', '', substr($replace, 0, $maxLength)) . '...';
         }
         return strip_tags(html_entity_decode($text));
@@ -213,20 +213,20 @@ class generalHelper
         $menuList[] = (int) $m_id;
         return $menuList;
     }
-
+    
     public static function getLiveParentId($n_id)
     {
         $news = News::where('n_id', $n_id)->first();
-        if ($news->is_live == 1) {
+        if($news->is_live == 1) {
             return $news->n_id;
-        } elseif ($news->parent_id != 0) {
+        }elseif($news->parent_id != 0){
             $parentNews = News::where('n_id', $news->parent_id)->first();
-            if ($parentNews) {
+            if($parentNews) {
                 return $parentNews->n_id;
-            } else {
+            }else{
                 return false;
             }
-        } else {
+        }else{
             return false;
         }
     }
@@ -342,34 +342,10 @@ class generalHelper
 
     public static function getImageAsData($url)
     {
-        $options = [
-            "http" => [
-                "method" => "GET",
-                "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36\r\n" .
-                    "Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8\r\n" .
-                    "Referer: https://www.google.com/\r\n",
-                "ignore_errors" => true,
-                "timeout" => 15
-            ],
-            "ssl" => [
-                "verify_peer" => false,
-                "verify_peer_name" => false,
-            ],
-        ];
-
-        $context = stream_context_create($options);
-        $image = @file_get_contents($url, false, $context);
-
-        if ($image !== false && !empty($image)) {
-            // ফিক্স: গ্লোবাল ক্লাসের আগে \ দিন
-            $finfo = new \finfo(FILEINFO_MIME_TYPE);
-            $mimeType = $finfo->buffer($image);
-
-            $mime = $mimeType ?: 'image/jpeg';
-
-            return 'data:' . $mime . ';base64,' . base64_encode($image);
+        $url = $url;
+        $image = file_get_contents($url);
+        if ($image !== false) {
+            return 'data:image/jpg;base64,' . base64_encode($image);
         }
-
-        return null;
     }
 }
