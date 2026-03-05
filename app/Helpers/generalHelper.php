@@ -63,7 +63,7 @@ class generalHelper
             $replace = preg_replace('/<iframe.*?\/iframe>/i', '', $replace);
             $replace = strip_tags($replace);
             $replace = preg_replace('@<(\w+)\b.*?>.*?</\1>@si', '', $replace);
-            $replace = preg_replace("/&#?[a-z0-9]+;/i", "", $replace);
+            $replace = preg_replace("/&#?[a-z0-9]+;/i","",$replace);
             return preg_replace('/\s+?(\S+)?$/', '', substr($replace, 0, $maxLength)) . '...';
         }
         return strip_tags(html_entity_decode($text));
@@ -213,20 +213,20 @@ class generalHelper
         $menuList[] = (int) $m_id;
         return $menuList;
     }
-
+    
     public static function getLiveParentId($n_id)
     {
         $news = News::where('n_id', $n_id)->first();
-        if ($news->is_live == 1) {
+        if($news->is_live == 1) {
             return $news->n_id;
-        } elseif ($news->parent_id != 0) {
+        }elseif($news->parent_id != 0){
             $parentNews = News::where('n_id', $news->parent_id)->first();
-            if ($parentNews) {
+            if($parentNews) {
                 return $parentNews->n_id;
-            } else {
+            }else{
                 return false;
             }
-        } else {
+        }else{
             return false;
         }
     }
@@ -340,34 +340,36 @@ class generalHelper
         return $quiz['a'] == $answer ? 1 : 0;
     }
 
-    public static function getImageAsData($url)
-    {
-        $ch = curl_init();
+    public static function getImageAsData($url) {
+    $ch = curl_init();
+    
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    
+    // SSL ভেরিফিকেশন অফ করা (ইমেজ না আসার প্রধান কারণ এটি হতে পারে)
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    
+    // ব্রাউজার এমুলেশন (Cloudflare এর জন্য মাস্ট)
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+    
+    // টাইমআউট সেট করা যাতে সার্ভার হ্যাং না করে
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); 
+    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // রিডাইরেক্ট হলে ফলো করবে
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10); // ১০ সেকেন্ডের বেশি সময় নিবে না
+    $imageData = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $mimeType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+    
+    curl_close($ch);
 
-        // ব্রাউজার হিসেবে পরিচয় দেওয়া (Cloudflare বাইপাস করতে)
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
-
-        // রেফারার সেট করা (ইমেজ চুরি ঠেকাতে চেক করলে এটি কাজে দেয়)
-        $host = parse_url($url, PHP_URL_HOST);
-        curl_setopt($ch, CURLOPT_REFERER, "https://$host/");
-
-        $imageData = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $mimeType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
-
-        curl_close($ch);
-
-        if ($httpCode === 200 && $imageData !== false) {
-            // যদি mime type না পাওয়া যায় তবে ডিফল্ট image/jpeg
-            $mime = $mimeType ?: 'image/jpeg';
-            return 'data:' . $mime . ';base64,' . base64_encode($imageData);
-        }
-
-        return null;
+    if ($httpCode === 200 && !empty($imageData)) {
+        // যদি MIME Type না পাওয়া যায়, তবে fallback হিসেবে image/jpeg
+        $mime = $mimeType ?: 'image/jpeg';
+        return 'data:' . $mime . ';base64,' . base64_encode($imageData);
     }
+
+    return null; // ইমেজ না পেলে null রিটার্ন করবে
+}
 }
