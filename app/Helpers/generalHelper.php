@@ -63,7 +63,7 @@ class generalHelper
             $replace = preg_replace('/<iframe.*?\/iframe>/i', '', $replace);
             $replace = strip_tags($replace);
             $replace = preg_replace('@<(\w+)\b.*?>.*?</\1>@si', '', $replace);
-            $replace = preg_replace("/&#?[a-z0-9]+;/i", "", $replace);
+            $replace = preg_replace("/&#?[a-z0-9]+;/i","",$replace);
             return preg_replace('/\s+?(\S+)?$/', '', substr($replace, 0, $maxLength)) . '...';
         }
         return strip_tags(html_entity_decode($text));
@@ -213,20 +213,20 @@ class generalHelper
         $menuList[] = (int) $m_id;
         return $menuList;
     }
-
+    
     public static function getLiveParentId($n_id)
     {
         $news = News::where('n_id', $n_id)->first();
-        if ($news->is_live == 1) {
+        if($news->is_live == 1) {
             return $news->n_id;
-        } elseif ($news->parent_id != 0) {
+        }elseif($news->parent_id != 0){
             $parentNews = News::where('n_id', $news->parent_id)->first();
-            if ($parentNews) {
+            if($parentNews) {
                 return $parentNews->n_id;
-            } else {
+            }else{
                 return false;
             }
-        } else {
+        }else{
             return false;
         }
     }
@@ -341,19 +341,11 @@ class generalHelper
     }
 
     public static function getImageAsData($url)
-{
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-    $image = curl_exec($ch);
-    curl_close($ch);
-
-    if ($image !== false) {
-        return 'data:image/jpg;base64,' . base64_encode($image);
+    {
+        $url = $url;
+        $image = file_get_contents($url);
+        if ($image !== false) {
+            return 'data:image/jpg;base64,' . base64_encode($image);
+        }
     }
-
-    return null;
-}
 }
