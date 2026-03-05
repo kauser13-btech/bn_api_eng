@@ -341,21 +341,19 @@ class generalHelper
     }
 
     public static function getImageAsData($url)
-    {
-        $options = [
-            "http" => [
-                "method" => "GET",
-                "header" => "User-Agent: Mozilla/5.0\r\n"
-            ]
-        ];
+{
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        $context = stream_context_create($options);
-        $image = file_get_contents($url, false, $context);
+    $image = curl_exec($ch);
+    curl_close($ch);
 
-        if ($image !== false) {
-            return 'data:image/jpg;base64,' . base64_encode($image);
-        }
-
-        return null;
+    if ($image !== false) {
+        return 'data:image/jpg;base64,' . base64_encode($image);
     }
+
+    return null;
+}
 }
