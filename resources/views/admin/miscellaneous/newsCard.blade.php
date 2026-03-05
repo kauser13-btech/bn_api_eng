@@ -82,7 +82,7 @@
                             alt="alt">
                     @endif
 
-                    <time>{{ App\Helpers\generalHelper::bn_date(date('d F Y', strtotime($news->n_date))) }}</time>
+                    <time>{{ date('d F Y', strtotime($news->n_date)) }}</time>
 
                     @if ($news->n_caption)
                         <div class="draggable">
