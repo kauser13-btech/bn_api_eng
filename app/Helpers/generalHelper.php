@@ -63,7 +63,7 @@ class generalHelper
             $replace = preg_replace('/<iframe.*?\/iframe>/i', '', $replace);
             $replace = strip_tags($replace);
             $replace = preg_replace('@<(\w+)\b.*?>.*?</\1>@si', '', $replace);
-            $replace = preg_replace("/&#?[a-z0-9]+;/i","",$replace);
+            $replace = preg_replace("/&#?[a-z0-9]+;/i", "", $replace);
             return preg_replace('/\s+?(\S+)?$/', '', substr($replace, 0, $maxLength)) . '...';
         }
         return strip_tags(html_entity_decode($text));
@@ -213,20 +213,20 @@ class generalHelper
         $menuList[] = (int) $m_id;
         return $menuList;
     }
-    
+
     public static function getLiveParentId($n_id)
     {
         $news = News::where('n_id', $n_id)->first();
-        if($news->is_live == 1) {
+        if ($news->is_live == 1) {
             return $news->n_id;
-        }elseif($news->parent_id != 0){
+        } elseif ($news->parent_id != 0) {
             $parentNews = News::where('n_id', $news->parent_id)->first();
-            if($parentNews) {
+            if ($parentNews) {
                 return $parentNews->n_id;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -340,12 +340,32 @@ class generalHelper
         return $quiz['a'] == $answer ? 1 : 0;
     }
 
-    public static function getImageAsData($url)
+    public static function getRemoteImage($url)
     {
-        $url = $url;
-        $image = file_get_contents($url);
-        if ($image !== false) {
-            return 'data:image/jpg;base64,' . base64_encode($image);
+        $ch = curl_init();
+
+        $headers = [
+            'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            'Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+            'Accept-Language: en-US,en;q=0.9',
+            'Referer: https://www.google.com/'
+        ];
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        $imageData = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($httpCode === 200 && $imageData !== false) {
+            return 'data:image/jpeg;base64,' . base64_encode($imageData);
         }
+
+        return null;
     }
 }
