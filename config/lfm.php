@@ -98,7 +98,7 @@ return [
 
     'disk'                     => env('FILESYSTEM_DRIVER', 'public'),
 
-    'rename_file'              => false,
+    'rename_file'              => true,
 
     'rename_duplicates'        => true,
 
