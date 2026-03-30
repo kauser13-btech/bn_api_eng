@@ -1342,6 +1342,7 @@
                 }
             });
         }
+        
         jQuery(document).ready(function($) {
             $('#divisions').change(function() {
                 divisions();
