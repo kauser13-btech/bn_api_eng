@@ -1215,7 +1215,7 @@
                     $districts.append('<option id="0" value="">জেলা</option>');
                     for (var i = 0; i < data.length; i++) {
                         if (divisionsId == data[i].division_id) {
-                            $districts.append('<option id=' + data[i].name + ' value=' + data[i].name + '>' +
+                            $districts.append('<option id="' + data[i].name + '" value="' + data[i].name + '">' +
                                 data[i].bn_name + '</option>');
                         }
                     }
@@ -1233,7 +1233,7 @@
                     $upazilas.append('<option id="0" value="">উপজেলা</option>');
                     for (var i = 0; i < data.length; i++) {
                         if (districtsId == data[i].district_id) {
-                            $upazilas.append('<option id=' + data[i].name + ' value=' + data[i].name + '>' +
+                            $upazilas.append('<option id="' + data[i].name + '" value="' + data[i].name + '">' +
                                 data[i].bn_name + '</option>');
                         }
                     }
