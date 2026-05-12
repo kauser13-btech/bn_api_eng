@@ -251,7 +251,11 @@ class CategoryController extends Controller
 		$most_read = Cache::get('most_read');
 
 		$list = Cache::flexible('keyword-' . $keyword, [504, 900], function () use ($keyword) {
-			$sql = News::isActive()->select('n_id', 'n_head', 'n_category', 'edition', 'main_image', 'start_at', 'created_at', 'deleted_at', 'n_date', 'n_details')->with('catName')->where('n_date', '>=', Carbon::now()->subDays(90))->where('meta_keyword', 'LIKE', '%' . $keyword . '%')->orderBy('n_id', 'desc')->limit(48)->get();
+			if ($keyword == "todayall") {
+				$sql = News::isActive()->select('n_id', 'n_head', 'n_category', 'edition', 'main_image', 'start_at', 'created_at', 'deleted_at', 'n_date', 'n_details')->with('catName')->where('start_at', '>=', Carbon::now()->subDays(1))->orderBy('n_id', 'desc')->limit(200)->get();
+			} else {
+				$sql = News::isActive()->select('n_id', 'n_head', 'n_category', 'edition', 'main_image', 'start_at', 'created_at', 'deleted_at', 'n_date', 'n_details')->with('catName')->where('n_date', '>=', Carbon::now()->subDays(90))->where('meta_keyword', 'LIKE', '%' . $keyword . '%')->orderBy('n_id', 'desc')->limit(48)->get();
+			}
 
 			$sql->transform(function ($row, $key) {
 				$row->main_image = ImageStoreHelpers::showImage('news_images', $row->created_at, $row->main_image, 'thumbnail');
