@@ -77,6 +77,7 @@ class HomeController extends Controller
                 'homeCat_2' => $homeCat_2,
                 'homeCat_3' => $homeCat_3,
                 'homeCat_7' => $homeCat_7,
+                'homeCat_9' => $homeCat_9,
             ],
             200,
             ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
