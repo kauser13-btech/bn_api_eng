@@ -49,6 +49,7 @@ class clearCacheHelpers
 		Cache::put('homeCat_6', queryHelpers::query_HomeCategory_With_Details(6, 20, 200), 300);
 		Cache::put('homeCat_10', queryHelpers::query_HomeCategory_With_Details(10, 20, 200), 300);
 		Cache::put('homeCat_8', queryHelpers::query_HomeCategory_With_Details(8, 20, 200), 300);
+		Cache::put('homeCat_9', queryHelpers::query_HomeCategory_With_Details(9, 20, 200), 300);
 		Cache::put('homeCat_12', queryHelpers::query_HomeCategory_With_Details(12, 20, 200), 300);
 		Cache::put('homeCat_15', queryHelpers::query_HomeCategory_With_Details(15, 20, 200), 300);
 

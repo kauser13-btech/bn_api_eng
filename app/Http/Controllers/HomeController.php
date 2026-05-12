@@ -51,6 +51,7 @@ class HomeController extends Controller
         $homeCat_2 = Cache::get('homeCat_2');
         $homeCat_3 = Cache::get('homeCat_3');
         $homeCat_7 = Cache::get('homeCat_7');
+        $homeCat_9 = Cache::get('homeCat_9');
 
         // $special_video = Cache::get('special_video');
         // $home_videoSlide = Cache::get('home_videoSlide');
