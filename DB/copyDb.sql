@@ -88,8 +88,8 @@ exit
 <!-- nginx --
 sudo systemctl stop nginx
 sudo systemctl start nginx
-sudo service php8.1-fpm stop
-sudo service php8.1-fpm start
+sudo service php8.3-fpm stop
+sudo service php8.3-fpm start
 
 composer audit
 composer audit fix
