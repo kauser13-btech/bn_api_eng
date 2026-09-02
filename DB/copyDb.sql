@@ -47,6 +47,7 @@ Password: cZY>>6*BBj>WZ?j]rcm4
 
 -- database lgoin
 ssh -i bp-sig-public.pem ubuntu@18.136.60.22
+ssh -i bp-sig-public.pem ubuntu@192.170.1.108
 mysql -u'root' -p'cZY>>6*BBj>WZ?j]rcm4'
 use bn_prod;
 
